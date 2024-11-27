@@ -1,5 +1,6 @@
 env/
 .vscode/
 *.xlsx
+.idea/
 index.html
 
