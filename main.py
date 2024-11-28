@@ -22,20 +22,15 @@ year_word = get_correct_year_word(years_since_foundation)
 
 excel_data_df = pandas.read_excel('wine2.xlsx', sheet_name='Лист1', keep_default_na=False)
 products = excel_data_df.to_dict(orient='records')
-pprint.pprint(products)  # TODO: delete!
 
-# TODO: delete!
 products_by_category = collections.defaultdict(list)
 for product in products:
     products_by_category[product['Категория']].append(product)
 
-pprint.pprint(products_by_category)
-# TODO: delete!
-
 rendered_page = template.render(
     years_since_foundation=years_since_foundation,
     year_word=year_word,
-    products=products
+    products_by_category=products_by_category
 )
 
 with open('index.html', 'w', encoding="utf8") as file:
