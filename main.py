@@ -3,7 +3,6 @@ import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import pandas
 import collections
-import pprint  # TODO: delete
 
 from word_year_endings import get_correct_year_word
 
@@ -20,7 +19,7 @@ years_since_foundation = current_year.year - foundation_year.year
 
 year_word = get_correct_year_word(years_since_foundation)
 
-excel_data_df = pandas.read_excel('wine2.xlsx', sheet_name='Лист1', keep_default_na=False)
+excel_data_df = pandas.read_excel('wine3.xlsx', sheet_name='Лист1', keep_default_na=False)
 products = excel_data_df.to_dict(orient='records')
 
 products_by_category = collections.defaultdict(list)
