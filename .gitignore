@@ -3,4 +3,4 @@ env/
 *.xlsx
 .idea/
 index.html
-
+.env
