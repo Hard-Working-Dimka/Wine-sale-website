@@ -3,8 +3,8 @@ import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import pandas
 import collections
-import os
 from dotenv import load_dotenv
+import configargparse
 
 from word_year_endings import get_correct_year_word
 
@@ -19,8 +19,16 @@ def main():
     )
     template = env.get_template('template.html')
 
-    excel_data_df = pandas.read_excel(os.getenv('EXEL_FILE_NAME'), sheet_name=os.getenv('EXEL_LIST_NAME'),
-                                      keep_default_na=False)
+    command_line_parser = configargparse.ArgumentParser(
+        description='Запуск сайта продажи вина'
+    )
+    command_line_parser.add_argument('-p', '--exel_path_name', default='wine.xlsx', env_var='EXEL_FILE_NAME',
+                                     help='Путь до exel таблицы с напитками')
+    command_line_parser.add_argument('-l', '--exel_list_name', default='Лист1', env_var='EXEL_LIST_NAME',
+                                     help='Название рабочего листа exel')
+    args = command_line_parser.parse_args()
+
+    excel_data_df = pandas.read_excel(args.exel_path_name, sheet_name=args.exel_list_name, keep_default_na=False)
     products = excel_data_df.to_dict(orient='records')
 
     current_year = datetime.datetime.today()
