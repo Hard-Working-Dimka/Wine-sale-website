@@ -22,7 +22,7 @@ def main():
     command_line_parser = configargparse.ArgumentParser(
         description='Запуск сайта продажи вина'
     )
-    command_line_parser.add_argument('-p', '--exel_path_name', default='wine.xlsx', env_var='EXEL_FILE_NAME',
+    command_line_parser.add_argument('-p', '--exel_path_name', default='wine.xlsx', env_var='EXEL_PATH_NAME',
                                      help='Путь до exel таблицы с напитками')
     command_line_parser.add_argument('-l', '--exel_list_name', default='Лист1', env_var='EXEL_LIST_NAME',
                                      help='Название рабочего листа exel')
